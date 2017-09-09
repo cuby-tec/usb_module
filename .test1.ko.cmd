@@ -1,0 +1,1 @@
+cmd_/home/walery/eclipse-workspace/usbtest/test1.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/walery/eclipse-workspace/usbtest/test1.ko /home/walery/eclipse-workspace/usbtest/test1.o /home/walery/eclipse-workspace/usbtest/test1.mod.o
