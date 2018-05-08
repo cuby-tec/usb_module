@@ -10,6 +10,9 @@
  * This driver is based on the 2.6.3 version of drivers/usb/usb-skeleton.c
  * but has been rewritten to be easy to read and use, as no locks are now
  * needed anymore.
+ * 
+ * sudo cp 180-cuby-permissions.rules /etc/udev/rules.d/
+ * insmod test1.ko
  *
  */
 /* Project: ctl
@@ -20,6 +23,7 @@
  * controller TM4C123GH6PMI.
  * 80MHz 32-bit ARM Cortex-M4 with floating point.
  * Dual 12-bit ADC, 5x64-bit 6x32-bit timers, MC PWMs.
+ * make file ---  $make
  *
  */
 
@@ -35,7 +39,7 @@
 //#include <linux/smp_lock.h>
 #include <linux/usb.h>
 #include <asm/uaccess.h>
-
+#include <linux/uaccess.h>
 
 #include <linux/export.h>
 //#include <linux/errno.h>
