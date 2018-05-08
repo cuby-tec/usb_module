@@ -1,0 +1,5 @@
+SUBSYSTEM=="usbmisc",ENV{DEVTYPE}=="usb_device",ATTRS{idVendor}=="1cbe",ATTRS{idProduct}=="0003",MODE:="0666"
+#SUBSYSTEM=="usbmisc", DRIVERS=="CNCcontrol", ATTRS{idVendor}=="1cbe", ATTRS{idProduct}=="0003", SYMLINK+="cnccontrol", MODE="0666"
+#KERNEL=="usbctl0", SUBSYSTEM=="usbmisc", ATTRS{idVendor}=="1cbe", SYMLINK+="cnccontrol", MODE="0666"
+SUBSYSTEMS=="usb",ATTRS{idVendor}=="1cbe",ATTRS{idProduct}=="0003", SYMLINK+="cnccontrol", MODE="0666"
+
