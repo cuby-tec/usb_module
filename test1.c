@@ -24,7 +24,7 @@
  * 80MHz 32-bit ARM Cortex-M4 with floating point.
  * Dual 12-bit ADC, 5x64-bit 6x32-bit timers, MC PWMs.
  * make file ---  $make
- *
+ * ~/eclipse-workspace/usbtest $ sudo cp 180-cuby-permissions.rules /etc/udev/rules.d/
  */
 
 
