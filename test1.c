@@ -153,13 +153,14 @@ static int ctl_release(struct inode *inode, struct file *file)
 	return 0;
 }
 
-
+//		if (copy_to_user(buffer, dev->bulk_in_buffer, count)) // it's a problem.[09.05.2018]
+// http://rus-linux.net/MyLDP/BOOKS/drivers/linux-device-drivers-13.html :useful link
+//	printk(KERN_ALERT "DEBUG: Passed %s %d bytes_read:%d \n",__FUNCTION__,__LINE__,bytes_read);
 // Line 112
 static ssize_t ctl_read(struct file *file, char __user *buffer, size_t count, loff_t *ppos)
 {
 	struct usb_ctl *dev;
 	int retval = 0, bytes_read;
-//	printk(KERN_DEBUG "165 Bulk message. \n");
 
 	dev = (struct usb_ctl *)file->private_data;
 
@@ -169,19 +170,15 @@ static ssize_t ctl_read(struct file *file, char __user *buffer, size_t count, lo
 			      dev->bulk_in_buffer,
 			      min(dev->bulk_in_size, count),
 			      &bytes_read, READ_TIIMEOUT); // HZ*10
-	printk(KERN_ALERT "DEBUG: Passed %s %d bytes_read:%d \n",__FUNCTION__,__LINE__,bytes_read);
 
 	/* if the read was successful, copy the data to userspace */
 	if (!retval) {
-//		if (copy_to_user(buffer, dev->bulk_in_buffer, count)) // it's a problem.[09.05.2018]
 		if (copy_to_user(buffer, dev->bulk_in_buffer, bytes_read))
 		{
-			printk(KERN_ALERT "176 Bulk message returned %d\n", retval);
 			retval = -EFAULT;
 		}
 		else
 		{
-			printk(KERN_DEBUG "181 Bulk message returned %d\n", retval);
 			retval = bytes_read;
 		}
 	}
